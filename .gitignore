@@ -1,0 +1,19 @@
+## Build and Output directories
+bin/
+obj/
+publish/
+*.exe
+*.dll
+*.pdb
+
+## User-specific files & IDE
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+project_backup.txt
+MergedGameCode.txt
+
+## Crash & Log files
+*.log

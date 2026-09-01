@@ -1,0 +1,219 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="TribeGameUI.MainWindow"
+        Title="Племя: Выживание"
+        Width="960" Height="620"
+        Background="#080810"
+        FontFamily="EB Garamond,Georgia,serif">
+
+    <Window.Resources>
+        <!-- Основные цвета -->
+        <SolidColorBrush x:Key="BgDeep"     Color="#080810"/>
+        <SolidColorBrush x:Key="BorderFaint" Color="#13111e"/>
+        <SolidColorBrush x:Key="BorderMid"  Color="#16121c"/>
+
+        <SolidColorBrush x:Key="TextPrimary"   Color="#c4b49a"/>
+        <SolidColorBrush x:Key="TextMuted"     Color="#a49070"/>
+        <SolidColorBrush x:Key="TextDim"       Color="#4a3828"/>
+        <SolidColorBrush x:Key="TextLabel"     Color="#2e2316"/>
+        <SolidColorBrush x:Key="AccentRed"     Color="#6b0000"/>
+        <SolidColorBrush x:Key="AccentGreen"   Color="#1a3d2a"/>
+    </Window.Resources>
+
+    <!-- Стили Avalonia -->
+    <Window.Styles>
+        <!-- НОВАЯ АНИМАЦИЯ ДЫХАНИЯ -->
+        <Style Selector="Image.Breathing">
+            <Setter Property="RenderTransform">
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+            </Setter>
+            <Style.Animations>
+                <Animation Duration="0:0:8" IterationCount="Infinite" PlaybackDirection="Alternate">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1.0"/>
+                        <Setter Property="ScaleTransform.ScaleY" Value="1.0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1.04"/>
+                        <Setter Property="ScaleTransform.ScaleY" Value="1.04"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <Style Selector="TextBlock.LabelStyle">
+            <Setter Property="FontFamily" Value="Cinzel,serif"/>
+            <Setter Property="FontSize" Value="9"/>
+            <Setter Property="LetterSpacing" Value="2.5"/>
+            <Setter Property="Foreground" Value="{StaticResource TextLabel}"/>
+        </Style>
+
+        <Style Selector="TextBlock.ResNumStyle">
+            <Setter Property="FontFamily" Value="Cinzel,serif"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#b4a080"/>
+        </Style>
+
+        <Style Selector="Button.ChoiceButtonStyle">
+            <Setter Property="FontFamily" Value="EB Garamond,Georgia,serif"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="Margin" Value="12,8"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Template">
+                <ControlTemplate TargetType="Button">
+                    <Panel>
+                        <Border Height="2" VerticalAlignment="Bottom" Background="{StaticResource AccentRed}" x:Name="BottomBar"/>
+                        <Border Background="{TemplateBinding Background}" Margin="0,0,0,2" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
+                        </Border>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.ChoiceAltButtonStyle">
+            <Setter Property="FontFamily" Value="EB Garamond,Georgia,serif"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="Margin" Value="12,8"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Template">
+                <ControlTemplate TargetType="Button">
+                    <Panel>
+                        <Border Height="2" VerticalAlignment="Bottom" Background="{StaticResource AccentGreen}"/>
+                        <Border Background="{TemplateBinding Background}" Margin="0,0,0,2" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
+                        </Border>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <!-- СЛОЙ 1: ФОН -->
+        <Image x:Name="BackgroundImage" Classes="Breathing" Stretch="UniformToFill" IsVisible="False"/>
+        <Image x:Name="CharacterImage" Classes="Breathing" Stretch="Uniform" VerticalAlignment="Bottom" MaxHeight="550" IsVisible="False"/>
+
+        <!-- СЛОЙ 2: ИГРОВОЙ ИНТЕРФЕЙС -->
+        <Grid x:Name="GamePanel" IsVisible="False" MaxWidth="850">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Панель ресурсов -->
+            <StackPanel x:Name="ResourcePanel" IsVisible="False" Grid.Row="0" Orientation="Horizontal" Spacing="40" HorizontalAlignment="Center" Margin="0,30,0,0" Effect="drop-shadow(2 2 6 #CC000000)">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="🍖" FontSize="24" VerticalAlignment="Center" Opacity="0.9"/>
+                    <TextBlock x:Name="ResourceFood" Text="10" Classes="ResNumStyle" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="🪵" FontSize="24" VerticalAlignment="Center" Opacity="0.9"/>
+                    <TextBlock x:Name="ResourceWood" Text="10" Classes="ResNumStyle" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="👥" FontSize="24" VerticalAlignment="Center" Opacity="0.9"/>
+                    <TextBlock x:Name="ResourcePeople" Text="5" Classes="ResNumStyle" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="Мораль группы">
+                    <TextBlock Text="🧠" FontSize="24" VerticalAlignment="Center" Opacity="0.9"/>
+                    <TextBlock x:Name="ResourceMorale" Text="100%" Classes="ResNumStyle" VerticalAlignment="Center" Foreground="LightSkyBlue"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Текст и Выборы -->
+            <Border Grid.Row="2" Background="#D9040408" CornerRadius="12" Margin="30,0,30,30" BorderBrush="#1AFFFFFF" BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer Grid.Row="0" MinHeight="100" MaxHeight="250" Padding="30,24,30,14" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="14">
+                            <TextBlock x:Name="SpeakerTag" FontFamily="Cinzel,serif" FontSize="11" LetterSpacing="3" Foreground="#8b5a3f" IsVisible="False" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="StoryText" FontSize="22" FontStyle="Italic" Foreground="{StaticResource TextPrimary}" TextWrapping="Wrap" LineHeight="36" TextAlignment="Center"/>
+                            <TextBlock x:Name="QuestionText" FontFamily="Cinzel,serif" FontSize="13" LetterSpacing="1.5" Foreground="{StaticResource TextDim}" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <Border Grid.Row="1" Padding="20,10,20,24">
+                        <StackPanel Spacing="16">
+                            <!-- ПОЛОСКА ТАЙМЕРА (Прячется по умолчанию) -->
+                            <ProgressBar x:Name="ChoiceTimerBar" Height="3" MaxWidth="350"
+                                         Background="#1AFFFFFF" Foreground="{StaticResource AccentRed}"
+                                         IsVisible="False" ShowProgressText="False" CornerRadius="1"/>
+                            
+                            <WrapPanel x:Name="ChoicesPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- СЛОЙ 3: УВЕДОМЛЕНИЯ "КЛИМ ЗАПОМНИТ ЭТО" -->
+        <Border x:Name="NotificationPanel" VerticalAlignment="Top" HorizontalAlignment="Right"
+                Margin="30" Padding="20,14" Background="#E6040408" CornerRadius="6"
+                BorderBrush="#33FFFFFF" BorderThickness="1" Opacity="0" IsHitTestVisible="False">
+            <Border.Transitions>
+                <Transitions>
+                    <!-- Плавное появление и затухание -->
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.4"/>
+                </Transitions>
+            </Border.Transitions>
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <TextBlock Text="👁" FontSize="18" VerticalAlignment="Center" Foreground="#b4a080"/>
+                <TextBlock x:Name="NotificationText" Foreground="{StaticResource TextPrimary}"
+                           FontStyle="Italic" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- СЛОЙ 4: ЗАТЕМНЕНИЕ ПРИ СМЕНЕ ЛОКАЦИИ / ДНЯ -->
+        <Border x:Name="FadeOverlay" Background="Black" Opacity="0" IsHitTestVisible="False">
+            <Border.Transitions>
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:1.5"/>
+                </Transitions>
+            </Border.Transitions>
+        </Border>
+
+        <!-- СЛОЙ ПРОЛОГА -->
+        <Grid x:Name="ProloguePanel" Background="Black">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="0" MaxWidth="600">
+                <TextBlock Text="ПЛЕМЯ : ВЫЖИВАНИЕ" FontFamily="Cinzel Decorative,Cinzel,serif" FontSize="10" LetterSpacing="6" Foreground="#2e1e0e" HorizontalAlignment="Center" Margin="0,0,0,16"/>
+                <Border Height="1" Background="#1a1208" Margin="60,0,60,24"/>
+                <TextBlock x:Name="CinematicText" FontSize="22" FontStyle="Italic" Foreground="{StaticResource TextPrimary}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" LineHeight="36" Margin="0,0,0,24" Opacity="0">
+                    <TextBlock.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:1"/>
+                        </Transitions>
+                    </TextBlock.Transitions>
+                </TextBlock>
+                <TextBlock x:Name="PrologueCounter" FontFamily="Cinzel,serif" FontSize="10" LetterSpacing="3" Foreground="#2e1e0e" HorizontalAlignment="Center" Margin="0,0,0,24"/>
+                <Border Height="1" Background="#1a1208" Margin="60,0,60,32"/>
+                <Button x:Name="StartGameButton" Content="НАЧАТЬ ПУТЬ" FontFamily="Cinzel,serif" FontSize="11" LetterSpacing="4" FontWeight="SemiBold" Padding="44,13" CornerRadius="2" Background="{StaticResource AccentRed}" Foreground="#e8d4b8" HorizontalAlignment="Center" BorderBrush="#8b1a00" BorderThickness="1" IsHitTestVisible="False" Opacity="0" Click="OnStartGameClicked">
+                    <Button.Transitions>
+                        <Transitions>
+                            <DoubleTransition Property="Opacity" Duration="0:0:1.2"/>
+                        </Transitions>
+                    </Button.Transitions>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

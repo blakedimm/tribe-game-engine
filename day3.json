@@ -1,0 +1,98 @@
+[
+  {
+    "Id": "day3_start",
+    "SpeakerName": null,
+    "Text": "Утро третьего дня. Ветер стих. Впервые за долгое время сквозь серые тучи пробивается тусклый, холодный свет. Великая Стужа словно взяла передышку, оставив после себя лишь абсолютную, звенящую тишину.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_far.png",
+    "CharacterImage": "clear",
+    "BgmPath": "clear",
+    "AmbientPath": "Audio/sfx_step_snow.mp3",
+    "MusicPath": "clear",
+    "Choices": [
+      {
+        "Text": "[ Очнуться и осмотреть лагерь ]",
+        "NextNodeId": "morning_check",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "morning_check",
+    "SpeakerName": null,
+    "Text": "Клим сидит у потухшего костра, точа свой нож об обломок камня. Ден спит, свернувшись клубком под заледенелым плащом. В воздухе висит напряжение.",
+    "Question": "Кажется, старик ждал, пока ты проснешься.",
+    "ImagePath": "Images/bg_camp.png",
+    "Choices": [
+      {
+        "Text": "Подойти к Климу",
+        "NextNodeId": "klim_morning_talk",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "klim_morning_talk",
+    "SpeakerName": "Клим",
+    "Text": "Старик поднимает на тебя тяжелый взгляд. «Снег перестал. Следы теперь видно как на ладони. И наши, и их.»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "[ Если лагерь был обнаружен ]",
+        "NextNodeId": "camp_under_attack",
+        "RequiredFlag": "camp_compromised",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      },
+      {
+        "Text": "[ Если вас не заметили ]",
+        "NextNodeId": "ruins_expedition",
+        "HideIfFlag": "camp_compromised",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "camp_under_attack",
+    "SpeakerName": "Клим",
+    "Text": "«Тот ублюдок успел свистнуть ночью, — цедит Клим. — Я ходил в дозор на рассвете. Они идут сюда. Человек десять, вооружены. Через час будут здесь.»",
+    "Question": "Мы не выстоим в открытом бою.",
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "MusicPath": "Audio/bgm_tension.mp3",
+    "Choices": [
+      {
+        "Text": "Бросаем всё и уходим в горы!",
+        "NextNodeId": "flee_mountains",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим сомневается, но понимает логику."
+      },
+      {
+        "Text": "Устроим им засаду. У нас есть преимущество.",
+        "NextNodeId": "ambush_plan",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Вы выбираете путь крови."
+      }
+    ]
+  },
+  {
+    "Id": "ruins_expedition",
+    "SpeakerName": "Клим",
+    "Text": "«Мы выиграли время, — старик убирает нож в ножны. — Но еды нет. Ветрогорск прямо под нами. Если там была разведка падальщиков, значит, там есть чем поживиться. Или умереть.»",
+    "Question": "Решайте, кто пойдет.",
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "Я пойду один. Быстрее обернусь.",
+        "NextNodeId": "explore_alone",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим уважает вашу храбрость."
+      },
+      {
+        "Text": "Идём вместе. Ден присмотрит за лагерем.",
+        "NextNodeId": "explore_with_klim",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  }
+]

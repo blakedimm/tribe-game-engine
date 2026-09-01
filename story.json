@@ -1,0 +1,395 @@
+[
+  {
+    "Id": "day_1_thought_1",
+    "SpeakerName": null,
+    "Text": "«Говорят, перед смертью от холода становится тепло...»",
+    "Question": null,
+    "ImagePath": "clear",
+    "CharacterImage": "clear",
+    "BgmPath": "Audio/bgm_tension.mp3",
+    "AmbientPath": "Audio/sfx_heartbeat.mp3", 
+    "MusicPath": "clear",
+    "TimerSeconds": 4,
+    "TimeoutNodeId": "day_1_thought_2",
+    "Choices": [
+      {
+        "Text": "[ ... ]",
+        "NextNodeId": "day_1_thought_2",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "day_1_thought_2",
+    "SpeakerName": null,
+    "Text": "«Это ложь. Холод не приносит покоя. Он просто выжигает из тебя всё человеческое...»",
+    "Question": null,
+    "ImagePath": "clear",
+    "TimerSeconds": 4,
+    "TimeoutNodeId": "day_1_thought_3",
+    "Choices": [
+      {
+        "Text": "[ ... ]",
+        "NextNodeId": "day_1_thought_3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "day_1_thought_3",
+    "SpeakerName": null,
+    "Text": "«...оставляя только животный страх. И пустоту.»",
+    "Question": "Слышен лишь отдаленный гул.",
+    "ImagePath": "clear",
+    "Choices": [
+      {
+        "Text": "[ Открыть глаза ]",
+        "NextNodeId": "day_1_start",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "day_1_start",
+    "SpeakerName": null,
+    "Text": "Холод пробирает до костей. Снег слепит глаза, а ледяной ветер воет так, словно пытается вытрясти из тебя душу. Ты смотришь на свои обледенелые перчатки. Ноги вязнут в сугробах, силы на исходе.",
+    "Question": null,
+    "ImagePath": "Images/bg_blizzard_walk.png",
+    "BgmPath": "Audio/bgm_blizzard.mp3",
+    "AmbientPath": "clear",
+    "Choices": [
+      {
+        "Text": "Сделать ещё один шаг...",
+        "NextNodeId": "intro_struggle",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "intro_struggle",
+    "SpeakerName": null,
+    "Text": "Каждое движение отзывается жгучей болью в груди. Легкие словно наполнили битым стеклом. Ты перестаешь чувствовать пальцы на ногах. Буран усиливается, сбивая тебя с ног. Ты пытаешься устоять, но колени предательски подгибаются.",
+    "Question": "Тело больше не принадлежит тебе.",
+    "ImagePath": "Images/bg_blizzard_walk.png",
+    "Choices": [
+      {
+        "Text": "Опереться на руки и попытаться удержаться",
+        "NextNodeId": "intro_fall",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "intro_fall",
+    "SpeakerName": null,
+    "Text": "Руки проваливаются в снег. Ты рушишься лицом прямо в ледяную корку. Экран медленно темнеет. Метель завывает где-то вдали, а снег вдруг кажется таким удивительно мягким... как перина.",
+    "Question": "Мороз начинает убаюкивать.",
+    "ImagePath": "clear", 
+    "TimerSeconds": 6,
+    "TimeoutNodeId": "intro_death",
+    "Choices": [
+      {
+        "Text": "[ БОРОТЬСЯ ]",
+        "NextNodeId": "intro_heartbeat",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "intro_heartbeat",
+    "SpeakerName": null,
+    "Text": "Ты задыхаешься. Снег забился в рот и нос. В кромешной тьме ты слышишь только гулкий, медленный стук собственного сердца. Оно замирает.",
+    "Question": "НЕ СПИ!",
+    "ImagePath": "clear",
+    "MusicPath": "Audio/bgm_tension.mp3",
+    "TimerSeconds": 3,
+    "TimeoutNodeId": "intro_death",
+    "Choices": [
+      {
+        "Text": "Стиснуть зубы и вырваться из тьмы!",
+        "NextNodeId": "intro_see_fire",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "intro_death",
+    "SpeakerName": null,
+    "Text": "Тьма поглощает тебя. Боль уходит, сменяясь обманчивым теплом. Великая Стужа забирает ещё одну жизнь...",
+    "Question": null,
+    "MusicPath": "clear",
+    "Choices": [
+      {
+        "Text": "[ ИСТОРИЯ ОКОНЧЕНА ]",
+        "NextNodeId": "day_1_thought_1",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "intro_see_fire",
+    "SpeakerName": null,
+    "Text": "С животным хрипом ты выдираешь лицо из снега. В пелене бурана, где-то далеко впереди, слабо мерцает тусклое оранжевое пятно. Огонь. Идти ты больше не можешь.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_far.png",
+    "MusicPath": "clear",
+    "Choices": [
+      {
+        "Text": "Ползти к свету на одних руках",
+        "NextNodeId": "camp_arrival",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "camp_arrival",
+    "SpeakerName": null,
+    "Text": "Ты вползаешь в освещенный круг к жалкой кучке углей, от которой больше дыма, чем тепла. Двое сидят у огня: суровый старик и парень, чьи губы дрожат сильнее, чем пламя. Они напряженно смотрят, как ты пытаешься приподняться на локтях.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp.png",
+    "AmbientPath": "Audio/ambient_campfire.mp3",
+    "Choices": [
+      {
+        "Text": "Прохрипеть просьбу о помощи",
+        "NextNodeId": "klim_intro",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "klim_intro",
+    "SpeakerName": "Старик",
+    "Text": "Его рука привычно ложится на рукоять ножа. «Очнулся, наконец... стой-ка, ты не из наших. Меня звать Клим, а это Ден. Ты кто такой и какого черта бродил один в пустоши?»",
+    "Question": "(У вас мало времени на ответ!)",
+    "VoiceSfx": "Audio/vocal2.mp3",
+    "TimerSeconds": 7,
+    "TimeoutNodeId": "klim_timeout",
+    "Choices": [
+      {
+        "Text": "Искал убежище. Спасибо, что пустили к огню.",
+        "NextNodeId": "klim_response_polite",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "klim_trust_up",
+        "TrustNotification": "Клим оценил вашу вежливость."
+      },
+      {
+        "Text": "А вам-то какое дело? Дайте погреться.",
+        "NextNodeId": "klim_response_aggro",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "klim_trust_down",
+        "TrustNotification": "Клим запомнит вашу грубость."
+      }
+    ]
+  },
+  {
+    "Id": "klim_response_polite",
+    "SpeakerName": "Клим",
+    "Text": "Старик хмыкает, немного расслабляя хватку на ноже. «Убежище... Здесь его нет. Наш караван мёртв. Нас осталось пятеро. Если хочешь остаться в живых, придётся быть полезным.»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "Понял тебя.",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "klim_response_aggro",
+    "SpeakerName": "Клим",
+    "Text": "Клим резко подаётся вперёд, его голос звучит как лязг металла. «Ты полумертвый кусок мяса! Радуйся, что вообще стоишь у огня. Будешь качать права — пойдёшь обратно в сугроб.»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "Ладно, остынь. Я понял.",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "klim_timeout",
+    "SpeakerName": "Клим",
+    "Text": "Старик раздраженно сплевывает в снег. «Немой, значит? Или отмороженный. Ладно, твоё дело. Но если твои руки не могут работать — пойдешь обратно в сугроб.»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "(Молча кивнуть)",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Ваше молчание вызывает подозрения."
+      }
+    ]
+  },
+  {
+    "Id": "hub_questions",
+    "SpeakerName": null,
+    "Text": "Клим подкладывает последние щепки в угли. Ден кутается в рваный плащ. Время на расспросы тает.",
+    "Question": "Что сейчас важнее всего узнать?",
+    "Choices": [
+      {
+        "Text": "Сколько нас всего? И что с припасами?",
+        "NextNodeId": "ask_resources",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "asked_resources,show_resources",
+        "HideIfFlag": "asked_resources"
+      },
+      {
+        "Text": "Что случилось с вашим караваном?",
+        "NextNodeId": "ask_caravan",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "asked_caravan",
+        "HideIfFlag": "asked_caravan"
+      },
+      {
+        "Text": "Парень, соберись. Твоя паника нас убьет.",
+        "NextNodeId": "ask_den",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "asked_den",
+        "HideIfFlag": "asked_den"
+      },
+      {
+        "Text": "И так... пора решать, что делать.",
+        "NextNodeId": "crisis_arrival",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "ask_resources",
+    "SpeakerName": "Клим",
+    "Text": "В мешке три сухаря и кусок вяленого мяса — и это всё на пять ртов. В землянке ещё двое раненых. Дров хватит на один разогрев. Выводы делай сам, чужак.",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "Ясно. Жесткая экономия.",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим видит в вас прагматика."
+      }
+    ]
+  },
+  {
+    "Id": "ask_caravan",
+    "SpeakerName": "Клим",
+    "Text": "Наш караван ушёл из Ветрогорска. Полсотни душ. Сначала кончилась еда, потом — надежда. Буран и волки забрали остальных. Мы выжили чудом.",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "Сочувствую вашим потерям.",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "ask_den",
+    "SpeakerName": "Ден",
+    "Text": "Парень вздрагивает: «Ты не понимаешь... кругом смерть! Мы все сдохнем, как те, в овраге!» По его щекам текут слёзы, мгновенно застывая корочкой льда.",
+    "Question": null,
+    "VoiceSfx": "Audio/voice4.mp3",
+    "Choices": [
+      {
+        "Text": "Мы выживем. Держи себя в руках.",
+        "NextNodeId": "hub_questions",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Ден немного успокоился."
+      }
+    ]
+  },
+  {
+    "Id": "crisis_arrival",
+    "SpeakerName": null,
+    "Text": "Угли шипят и гаснут. Порыв ледяного ветра доносит стон из-за деревьев. К сугробу, шатаясь, выходит фигура — человек, покрытый инеем, рушится на колени.",
+    "Question": "Это незнакомец. Он безоружен и явно умирает.",
+    "MusicPath": "Audio/bgm_tension.mp3",
+    "Choices": [
+      {
+        "Text": "Помочь ему: отдать последнюю еду (Еда -1, Люди +1)",
+        "NextNodeId": "outcome_help",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": -1, "WoodDelta": 0, "PeopleDelta": 1,
+        "TrustNotification": "Клим запомнит ваше милосердие.",
+        "AddFlag": "rescued_stranger"
+      },
+      {
+        "Text": "Он обуза. Добить, пока не очнулся.",
+        "NextNodeId": "outcome_kill",
+        "SfxPath": "Audio/sfx_strike.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим удивлен вашей жестокостью."
+      },
+      {
+        "Text": "Оставить его замерзать.",
+        "NextNodeId": "outcome_ignore",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "outcome_help",
+    "SpeakerName": null,
+    "Text": "Вы втаскиваете тело к кострищу. Ден помогает растирать обмороженные пальцы. Клим хмуро отдаёт кусок мяса — еды почти нет, но вы остались людьми.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Завершить День 1 ]",
+        "NextNodeId": "end_of_day_1",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "outcome_kill",
+    "SpeakerName": null,
+    "Text": "Быстрый удар — и тишина. Клим отворачивается. Ден зажимает рот, чтобы не закричать. Вы переступаете через тело.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Завершить День 1 ]",
+        "NextNodeId": "end_of_day_1",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "outcome_ignore",
+    "SpeakerName": null,
+    "Text": "Вы отходите. Стон за спиной переходит в хрип, потом стихает. Лагерь возвращается к прежнему гнетущему молчанию.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Завершить День 1 ]",
+        "NextNodeId": "end_of_day_1",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "end_of_day_1",
+    "SpeakerName": "Клим",
+    "Text": "Старик смотрит на догорающие угли. «Костер гаснет. Еды почти не осталось. Если завтра мы не найдем провизию и хворост — следующая ночь станет для нас последней.»",
+    "Question": "Лагерь потребляет ресурсы. (Дрова -1)",
+    "Choices": [
+      {
+        "Text": "[ Начать День 2 ]",
+        "NextNodeId": null,
+        "LoadFile": "day2.json",
+        "FoodDelta": 0, "WoodDelta": -1, "PeopleDelta": 0,
+        "AddFlag": "show_resources",
+        "IsEndOfDay": true
+      }
+    ]
+  }
+]

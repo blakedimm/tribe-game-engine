@@ -1,0 +1,338 @@
+[
+  {
+    "Id": "day2_start",
+    "SpeakerName": null,
+    "Text": "Глубокая ночь. Буран немного утих, но мороз стал только злее. Тьма за границей света от костра кажется густой, словно смола.",
+    "Question": "Что будешь делать?",
+    "ImagePath": "Images/bg_camp_night.png",
+    "CharacterImage": "clear",
+    "BgmPath": "Audio/bgm_blizzard.mp3",
+    "AmbientPath": "Audio/ambient_campfire.mp3",
+    "MusicPath": "clear",
+    "Choices": [
+      {
+        "Text": "Пойти к деревьям и наломать веток (Дрова +1)",
+        "NextNodeId": "gather_wood_night",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 1, "PeopleDelta": 0,
+        "AddFlag": "gathered_wood_day2",
+        "HideIfFlag": "gathered_wood_day2"
+      },
+      {
+        "Text": "Остаться у костра и осмотреться",
+        "NextNodeId": "night_stranger_alive",
+        "RequiredFlag": "rescued_stranger",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      },
+      {
+        "Text": "Остаться у костра и осмотреться",
+        "NextNodeId": "night_stranger_dead",
+        "HideIfFlag": "rescued_stranger",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "gather_wood_night",
+    "SpeakerName": null,
+    "Text": "Ты отходишь от спасительного света. Деревья покрыты толстой коркой льда. Обдирая руки в кровь, тебе удается обломать несколько сухих веток. Лес вокруг пугает своей неестественной тишиной.",
+    "Question": null,
+    "ImagePath": "Images/bg_woods_night.png",
+    "SfxPath": "Audio/sfx_throw_wood.mp3",
+    "Choices": [
+      {
+        "Text": "Вернуться в лагерь",
+        "NextNodeId": "day2_start",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "night_stranger_alive",
+    "SpeakerName": null,
+    "Text": "Спасенный вами человек тяжело дышит во сне, укрытый остатками чьей-то куртки. Ден сидит, обхватив колени, и смотрит в огонь. Клим дремлет, но его рука все еще сжимает нож.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_night.png",
+    "Choices": [
+      {
+        "Text": "Сесть поближе к огню",
+        "NextNodeId": "the_scream",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "night_stranger_dead",
+    "SpeakerName": null,
+    "Text": "Снаружи только завывание ветра. Тело незнакомца уже давно занесло снегом. Ден сидит, обхватив колени, боясь взглянуть в ту сторону. Клим дремлет, но его рука все еще сжимает нож.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_night.png",
+    "Choices": [
+      {
+        "Text": "Сесть поближе к огню",
+        "NextNodeId": "the_scream",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "the_scream",
+    "SpeakerName": null,
+    "Text": "Внезапно ледяную тишину разрывает звук. Это протяжный, полный животного ужаса мужской крик. Он доносится со стороны руин в низине. Затем всё резко стихает.",
+    "Question": "Клим мгновенно открывает глаза. Ден вжимается в землю.",
+    "MusicPath": "Audio/bgm_tension.mp3",
+    "VoiceSfx": "Audio/sfx_distant_scream.mp3",
+    "TimerSeconds": 6,
+    "TimeoutNodeId": "scream_timeout",
+    "Choices": [
+      {
+        "Text": "Вскочить на ноги, достав оружие",
+        "NextNodeId": "scream_weapon",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим видит, что вы готовы к бою."
+      },
+      {
+        "Text": "Затушить костёр! Мы как на ладони!",
+        "NextNodeId": "scream_hide",
+        "SfxPath": "Audio/sfx_fire_out.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "fire_extinguished",
+        "TrustNotification": "Вы погрузили лагерь во тьму."
+      },
+      {
+        "Text": "Что это было?! Волки?",
+        "NextNodeId": "scream_question",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scream_timeout",
+    "SpeakerName": "Клим",
+    "Text": "Вы оцепенели от первобытного страха. Клим шипит сквозь зубы: «Пригнись, дурень!»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "[ Замереть ]",
+        "NextNodeId": "approach_fire_on",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scream_weapon",
+    "SpeakerName": "Клим",
+    "Text": "«Убери железку, дурень, — шипит старик, стягивая тебя вниз. — Твой нож им на один зуб. Слушай...»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "[ Прислушаться ]",
+        "NextNodeId": "approach_fire_on",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scream_question",
+    "SpeakerName": "Клим",
+    "Text": "«Люди так не кричат от волков. Это что-то хуже, — шепчет Клим, гася пламя в глазах. — Тихо...»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "[ Прислушаться ]",
+        "NextNodeId": "approach_fire_on",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scream_hide",
+    "SpeakerName": "Ден",
+    "Text": "Ты лихорадочно затаптываешь огонь. Лагерь погружается в абсолютную, давящую черноту. Ден вскрикивает, но Клим зажимает ему рот. «Тихо. Сюда кто-то идет.»",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_dark.png",
+    "AmbientPath": "clear",
+    "VoiceSfx": "Audio/vocal2.mp3",
+    "Choices": [
+      {
+        "Text": "[ Затаить дыхание ]",
+        "NextNodeId": "approach_fire_off",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "approach_fire_on",
+    "SpeakerName": null,
+    "Text": "Сквозь вой бурана доносится отчетливый хруст снега. Кто-то бежит прямо к вашему свету. Из темноты вываливается фигура в рваном армейском бушлате. Увидев костёр, он резко останавливается, вскидывая самодельный арбалет.",
+    "Question": "Это разведчик падальщиков! Он сейчас поднимет тревогу!",
+    "SfxPath": "Audio/sfx_step_snow.mp3",
+    "TimerSeconds": 4,
+    "TimeoutNodeId": "scout_alerted",
+    "Choices": [
+      {
+        "Text": "Броситься на него!",
+        "NextNodeId": "scout_tackled",
+        "SfxPath": "Audio/sfx_step_snow.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Вы рискнули жизнью ради лагеря."
+      },
+      {
+        "Text": "Метнуть нож в горло",
+        "NextNodeId": "scout_killed",
+        "SfxPath": "Audio/sfx_strike.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Клим поражен вашей смертоносностью."
+      }
+    ]
+  },
+  {
+    "Id": "approach_fire_off",
+    "SpeakerName": null,
+    "Text": "Тьма скрывает вас. В пяти метрах от лагеря пробегает грузная фигура, тяжело дыша. Луч тусклого фонарика скользит по снегу, едва не задевая ваши ноги. Незнакомец бормочет проклятия и убегает в сторону руин.",
+    "Question": "Сердце бешено колотится. Он вас не заметил.",
+    "SfxPath": "Audio/sfx_step_snow.mp3",
+    "Choices": [
+      {
+        "Text": "Выдохнуть",
+        "NextNodeId": "scout_escaped",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      },
+      {
+        "Text": "Напасть на него со спины в темноте!",
+        "NextNodeId": "scout_killed",
+        "SfxPath": "Audio/sfx_strike.mp3",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scout_alerted",
+    "SpeakerName": null,
+    "Text": "Вы промедлили. Разведчик свистит в металлический манок. Пронзительный звук разносится по всей округе. Клим с рычанием сбивает его с ног и перерезает горло, но дело сделано.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Обыскать тело ] (Еда +1)",
+        "NextNodeId": "aftermath_discussion",
+        "FoodDelta": 1, "WoodDelta": 0, "PeopleDelta": 0,
+        "AddFlag": "camp_compromised"
+      }
+    ]
+  },
+  {
+    "Id": "scout_tackled",
+    "SpeakerName": null,
+    "Text": "Ты сбиваешь его в снег. Оружие отлетает в сторону. Прежде чем он успевает закричать, Клим оказывается рядом и хладнокровно заканчивает дело своим клинком.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Обыскать тело ] (Еда +1)",
+        "NextNodeId": "aftermath_discussion",
+        "FoodDelta": 1, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scout_killed",
+    "SpeakerName": null,
+    "Text": "Быстрое движение в темноте. Разведчик давится собственной кровью и оседает в сугроб. В его карманах вы находите немного мерзлого мяса.",
+    "Question": null,
+    "Choices": [
+      {
+        "Text": "[ Забрать добычу ] (Еда +1)",
+        "NextNodeId": "aftermath_discussion",
+        "FoodDelta": 1, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "scout_escaped",
+    "SpeakerName": "Клим",
+    "Text": "Когда шаги стихают, старик переводит дыхание. «Падальщики из Ветрогорска. Ищут выживших, чтобы грабить... Но от кого он так бежал?»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "Значит, там, в руинах, есть кто-то еще.",
+        "NextNodeId": "plan_scout",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "aftermath_discussion",
+    "SpeakerName": "Клим",
+    "Text": "Старик вытирает нож о снег. «Это падальщики из Ветрогорска. Судя по тому, как он драпал, в руинах внизу на них кто-то напал. Или что-то.»",
+    "Question": "Что будем делать?",
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "Спрячемся в землянке и будем держать оборону.",
+        "NextNodeId": "plan_defense",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "HideIfFlag": "camp_compromised"
+      },
+      {
+        "Text": "Они знают, где мы! Нужно уходить сейчас же!",
+        "NextNodeId": "plan_flee",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "RequiredFlag": "camp_compromised"
+      },
+      {
+        "Text": "Я пойду в руины. Добью выживших и заберу их припасы.",
+        "NextNodeId": "plan_scout",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0,
+        "TrustNotification": "Вы проявили безумную смелость."
+      }
+    ]
+  },
+  {
+    "Id": "plan_defense",
+    "SpeakerName": "Клим",
+    "Text": "Вы спускаетесь в тесную землянку. Здесь пахнет сыростью и гноем от ран Сергея. Мария испуганно прижимает к себе бинты. Клим прав — это ловушка. Если падальщики завалят вход, вы похоронены заживо.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_dark.png",
+    "VoiceSfx": "Audio/vocal3.mp3",
+    "Choices": [
+      {
+        "Text": "[ КОНЕЦ ВТОРОГО ДНЯ ]",
+        "NextNodeId": "day2_start",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "plan_flee",
+    "SpeakerName": "Клим",
+    "Text": "«С ранеными? Далеко мы не уйдем. Буран нас сожрет, — хрипит старик, но начинает собирать вещи. — У нас нет выбора. Помоги Марии поднять Сергея.»",
+    "Question": null,
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "[ КОНЕЦ ВТОРОГО ДНЯ ]",
+        "NextNodeId": "day2_start",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  },
+  {
+    "Id": "plan_scout",
+    "SpeakerName": "Клим",
+    "Text": "Ты оставляешь лагерь и растворяешься в метели. Впереди вырисовываются черные остовы разрушенных зданий Ветрогорска. Там, среди бетона и льда, затаилось нечто... И оно уже убило разведчика.",
+    "Question": null,
+    "ImagePath": "Images/bg_camp_dark.png",
+    "VoiceSfx": "Audio/vocal1.mp3",
+    "Choices": [
+      {
+        "Text": "[ КОНЕЦ ВТОРОГО ДНЯ ]",
+        "NextNodeId": "day2_start",
+        "FoodDelta": 0, "WoodDelta": 0, "PeopleDelta": 0
+      }
+    ]
+  }
+]
