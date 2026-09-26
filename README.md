@@ -69,5 +69,5 @@ dotnet run
 ---
 
 ## 👨‍💻 Author
-* **Developer:** [Blake](https://github.com/blakedimm)
+* **Developer:** [blakedimm](https://github.com/blakedimm)
 * **Focus:** Cross-Platform Desktop Apps, Custom Engines & Systems Programming
